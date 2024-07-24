@@ -5,6 +5,7 @@ const serverless = require('serverless-http');
 require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -16,6 +17,9 @@ mongoose.connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
 }).then(() => {
   console.log('Connected to MongoDB');
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
 }).catch(err => {
   console.error('Error connecting to MongoDB:', err);
 });
@@ -26,8 +30,3 @@ app.use('/api/items', itemsRoute);
 
 module.exports = app;
 module.exports.handler = serverless(app);
-
-/*module.exports = (req, res) => {
-    res.status(200).send('Hello, world!');
-  };*/
-  

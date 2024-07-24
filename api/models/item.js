@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ItemSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
     category: { type: String, required: true }, // Added for peyon and 3D
     theme: { type: String, required: true }, // Represents the thematic collection
     type: { type: String, required: true }, // Type of item, e.g., tree, rock, etc.
@@ -13,4 +13,4 @@ const ItemSchema = new mongoose.Schema({
     addedon: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Item', ItemSchema);
+module.exports = mongoose.model('Item', itemSchema);
