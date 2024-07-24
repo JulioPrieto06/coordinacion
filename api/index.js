@@ -11,6 +11,13 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Logging middleware for debugging
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    console.log(`Headers: ${JSON.stringify(req.headers)}`);
+    next();
+});
+
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
