@@ -12,14 +12,8 @@
         "dest": "api/index.js"
       }
     ],
-    "projectSettings": {
-        "framework": "nextjs",
-        "buildCommand": "npm run build",
-        "outputDirectory": "out",
-        "publicSource": true,
-        "environmentVariables": {
-          "NODE_ENV": "production"
-        }
-      }
+    "env": {
+      "MONGODB_URI": "mongodb+srv://admin:admin01@cluster0.viftsxd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    }
   }
   
