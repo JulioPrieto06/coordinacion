@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-    category: { type: String, required: true }, // Added for peyon and 3D
-    theme: { type: String, required: true }, // Represents the thematic collection
-    type: { type: String, required: true }, // Type of item, e.g., tree, rock, etc.
+    category: { type: String, required: true },
+    theme: { type: String, required: true },
+    type: { type: String, required: true },
     name: { type: String, required: true },
-    characteristics: { type: [String], required: false }, // Array of characteristics
+    characteristics: { type: [String], required: false },
     qty: { type: Number, required: true },
     state: { type: Boolean, required: true },
     usr: { type: String, required: true },
