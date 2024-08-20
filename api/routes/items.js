@@ -60,4 +60,32 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// GET: Obtener por categoria
+router.get('/consultar/producto/categoria/:categoria', async (req, res) => {
+    try{
+        const items = await Item.find({category: req.params.categoria});
+        res.json(items);
+    }
+    catch(err){
+        res.status(500).json({ message: err.message });
+    }
+});
+
+//router.get('/categories/search/:palabra', async (req, res) => {
+//    try {
+//        const palabra = req.query.q;
+//        //if (!searchTerm) {
+//        //    return res.status(400).json({ message: 'Search term is required' });
+//        //}
+//        const categories = await Item.find({ 
+//            category: { $regex: req.params.palabra, $options: 'i' }
+//        });
+//
+//        res.json(categories);
+//    } catch (err) {
+//        res.status(500).json({ message: err.message });
+//    }
+//});
+
+
 module.exports = router;
