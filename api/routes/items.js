@@ -14,10 +14,24 @@ router.post('/', async (req, res) => {
 });
 
 // GET: Retrieve items
-router.get('/', async (req, res) => {
+router.get('/obtener/categorias', async (req, res) => {
     try {
-        const items = await Item.find();
-        res.json(items);
+        const categorias = await Item.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    count: { $sum: 1 }
+                }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    categoria: "$_id",
+                    count: 1
+                }
+            }
+        ])
+        res.json(categorias);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
