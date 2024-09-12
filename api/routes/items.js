@@ -14,12 +14,12 @@ router.post('/', async (req, res) => {
 });
 
 // GET: Retrieve items
-router.get('/obtener/categorias', async (req, res) => {
+router.get('/obtener/tematicas', async (req, res) => {
     try {
-        const categorias = await Item.aggregate([
+        const tematicas = await Item.aggregate([
             {
                 $group: {
-                    _id: "$category",
+                    _id: "$tematica",
                     count: { $sum: 1 }
                 }
             },
@@ -31,7 +31,7 @@ router.get('/obtener/categorias', async (req, res) => {
                 }
             }
         ])
-        res.json(categorias);
+        res.json(tematicas);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -75,9 +75,9 @@ router.delete('/:id', async (req, res) => {
 });
 
 // GET: Obtener por categoria
-router.get('/consultar/producto/categoria/:categoria', async (req, res) => {
+router.get('/consultar/producto/tematica/:tematica', async (req, res) => {
     try{
-        const items = await Item.find({category: req.params.categoria});
+        const items = await Item.find({tematica: req.params.tematica});
         res.json(items);
     }
     catch(err){
