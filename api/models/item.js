@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const itemSchema = new mongoose.Schema({
     //nuevo schema
     usr: { type: String, required: true }, //quien agregó el producto
-    usrTwo: { type: String, required: true }, //usuario al que se le presta el producto
+    usrTwo: { type: String, required: false }, //usuario al que se le presta el producto
     almacen: {type: String, required: true}, //ubicacion física del producto
     tipoDeMaterial: {type: String, required: true}, //material del que está hecho el producto x ejemplo: peyon, peluche, 3d, etc
     tematica: {type: String, required: true},//temática principal para la que se usará esté producto x ejemplo: lección, misionero, pase de lista
