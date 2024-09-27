@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Item = require('../models/item');
+const Prestamo = require('../models/prestamo');
 
 // POST: Create a new item
 router.post('/', async (req, res) => {
@@ -52,8 +53,6 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-
-
 // PATCH: Update an item
 router.patch('/:id', async (req, res) => {
     try {
@@ -85,5 +84,28 @@ router.get('/consultar/producto/tematica/:tematica', async (req, res) => {
     }
 });
 
+//GET: Obtener todos los prestamos
+router.get('/historial/prestamo/obtener', async (req,res) => {
+    try{
+    const items = await Prestamo.find();
+    res.status(200).json(items);
+    }
+    catch(err){
+        res.status(500).json({message:err.message});
+    }
+}); 
+
+// POST: Guardar registro de prestamo
+router.post('/historial/prestamo/guardar', async(req,res) => {
+    const newPrestamo = new Prestamo(req.body);
+    try {
+        const savedPrestamo = await newPrestamo.save();
+        res.status(201).json(savedPrestamo);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+// 
 
 module.exports = router;
