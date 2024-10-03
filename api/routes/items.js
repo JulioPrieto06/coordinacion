@@ -116,9 +116,9 @@ router.post('/prestamos/guardar', async (req, res) => {
         }
 
         const savedPrestamo = await newPrestamo.save();
-        res.status(201).json(savedPrestamo);
+        res.status(201).json({message:"Prestamo guardado correctamente", "error": false, savedPrestamo});
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).json({ message: err.message, "error":true});
     }
 });
 
@@ -129,7 +129,7 @@ router.patch('/prestamos/actualizar/:id', async(req,res) => {
         if (!updatePrestamo) {
             return res.status(404).json({ message: 'Préstamo no encontrado' , "error":true});
         }
-        res.status(200).json(updatePrestamo);
+        res.status(200).json({message: "Cambios guardados correctamente", "error": false, updatePrestamo});
     } catch(err){
         res.status(500).json({ message: err.message, "error":true});
     }
