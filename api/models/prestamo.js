@@ -5,6 +5,7 @@ const prestamoSchema = new mongoose.Schema({
     fechaEntrega: { type: String, required: true },
     fechaLimite: {type:String,required:true},
     nombreQuienRecibe: {type:String, required:true},
+    idUsuario: {type:String, requiered:true},
     articulos:[
         {
             id:{type:String, required:true},

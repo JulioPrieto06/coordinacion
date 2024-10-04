@@ -95,6 +95,16 @@ router.get('/prestamos/obtener', async (req,res) => {
     }
 }); 
 
+//GET: Obtener prestamos por idUsuario
+router.get('/prestamos/obtener/id-usuario/:id', async(req,res) => {
+    try{
+        const prestamos = await Prestamo.find({idUsuario:req.params.id});
+        res.status(200).json(prestamos);
+    }catch(err){
+        res.status(500).json({message: err.message, error:true});
+    }
+})
+
 //POST: Guardar prestamo y actualizar cantidad disponible de cada producto.
 router.post('/prestamos/guardar', async (req, res) => {
     const newPrestamo = new Prestamo(req.body);
